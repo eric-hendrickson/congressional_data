@@ -1,0 +1,15 @@
+# production
+/build
+*.egg-info
+dist
+
+# misc
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# python
+__pycache__
+venv

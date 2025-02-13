@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "congressional_data"
+version = "0.1.0dev1"
+description = "A tool for pulling congressional data"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Eric Hendrickson"}
+]
+dependencies = [
+    "beautifulsoup4==4.12.2",
+    "nameparser==1.1.3",
+    "us==3.2.0"
+]
