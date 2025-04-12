@@ -13,7 +13,7 @@ class RepresentativesRetriever():
         self.representative_ids = representative_ids
         self.house_members_list_url = "https://clerk.house.gov/Members/ViewMemberList"
         self.member_url = "https://clerk.house.gov/members/"
-        self.member_pattern = self.member_pattern = r'[A-Z]\d{6}'
+        self.member_pattern = r'[A-Z]\d{6}'
         self.representatives = []
         self.state_abbreviations = [state.abbr for state in us.states.STATES]
         self.debug = debug
@@ -69,6 +69,18 @@ class RepresentativesRetriever():
                 if len(district_number) > 0 and district_number[0].isnumeric():
                     position_or_district = int(district_number[0])
                 party = split_value[1].strip()
+                hometown_list = p_elements[1].text.strip().split(":") if p_elements[1] != None else None
+                hometown = hometown_list[1].strip() if hometown_list != None and len(hometown_list) > 1 else None
+                contact_table = soup.find("table", { "class": "contact-schedule-section" })
+                member_div = contact_table.find("div", { "class": "member" })
+                address_list = member_div.find_all("span")
+                address1 = address_list[0].text.strip()
+                address2 = address_list[1].text.strip()
+                address3 = " ".join(address_list[2].text.strip().split())
+                phone_list = contact_table.find("span", { "class": "phone" }).text.strip().split(":")
+                phone = phone_list[1].strip()
+                website_link = member_div.parent.find("a")
+                website = website_link["href"] if website_link else None
                 oath_list = p_elements[2].text.strip().split(":") if p_elements[2] != None else None
                 date_last_oath_of_office = self.__convert_to_datetime(oath_list[1].strip()) if oath_list != None and len(oath_list) > 1 else None
                 resigned_list = p_elements[3].text.strip().split(":") if len(p_elements) > 3 else None
@@ -84,6 +96,12 @@ class RepresentativesRetriever():
                     state_or_territory_abbreviation,
                     position_or_district,
                     party,
+                    hometown,
+                    address1,
+                    address2,
+                    address3,
+                    phone,
+                    website,
                     date_last_oath_of_office,
                     date_resigned,
                     is_voting_representative

@@ -10,6 +10,12 @@ class Representative():
         state_or_territory_abbreviation,
         position_or_district,
         party,
+        hometown,
+        address1,
+        address2,
+        address3,
+        phone,
+        website,
         date_last_oath_of_office,
         date_resigned,
         is_voting_representative
@@ -23,6 +29,12 @@ class Representative():
         self._state_or_territory_abbreviation = state_or_territory_abbreviation
         self._position_or_district = position_or_district
         self._party = party
+        self._hometown = hometown
+        self._address1 = address1
+        self._address2 = address2
+        self._address3 = address3
+        self._phone = phone
+        self._website = website
         self._date_last_oath_of_office = date_last_oath_of_office
         self._date_resigned = date_resigned
         self._is_voting_representative = is_voting_representative
@@ -42,6 +54,12 @@ class Representative():
             "state_or_territory_abbreviation",
             "position_or_district",
             "party",
+            "hometown",
+            "address1",
+            "address2",
+            "address3",
+            "phone",
+            "website",
             "date_last_oath_of_office",
             "date_resigned",
             "is_voting_representative"
@@ -59,6 +77,12 @@ class Representative():
             self._state_or_territory_abbreviation,
             self._position_or_district,
             self._party,
+            self._hometown,
+            self._address1,
+            self._address2,
+            self._address3,
+            self._phone,
+            self._website,
             self._date_last_oath_of_office,
             self._date_resigned,
             self._is_voting_representative
@@ -90,6 +114,24 @@ class Representative():
 
     def get_party(self):
         return self._party
+
+    def get_hometown(self):
+        return self._hometown
+
+    def get_address1(self):
+        return self._address1
+    
+    def get_address2(self):
+        return self._address2
+
+    def get_address3(self):
+        return self._address3
+
+    def get_phone(self):
+        return self._phone
+    
+    def get_website(self):
+        return self._website
 
     def get_date_last_oath_of_office(self):
         return self._date_last_oath_of_office
