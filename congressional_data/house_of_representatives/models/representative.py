@@ -54,6 +54,12 @@ class Representative():
             "state_or_territory_abbreviation",
             "position_or_district",
             "party",
+            "hometown",
+            "address1",
+            "address2",
+            "address3",
+            "phone",
+            "website",
             "date_last_oath_of_office",
             "date_resigned",
             "is_voting_representative"

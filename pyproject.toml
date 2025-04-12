@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "congressional_data"
-version = "0.1.0dev1"
+version = "0.1.0dev2"
 description = "A tool for pulling congressional data"
 readme = "README.md"
 license = {file = "LICENSE"}

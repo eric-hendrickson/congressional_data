@@ -76,11 +76,11 @@ class RepresentativesRetriever():
                 address_list = member_div.find_all("span")
                 address1 = address_list[0].text.strip()
                 address2 = address_list[1].text.strip()
-                address3 = address_list[2].text.strip()
+                address3 = " ".join(address_list[2].text.strip().split())
                 phone_list = contact_table.find("span", { "class": "phone" }).text.strip().split(":")
-                phone = phone_list[1]
+                phone = phone_list[1].strip()
                 website_link = member_div.parent.find("a")
-                website = website_link.href if website_link else None
+                website = website_link["href"] if website_link else None
                 oath_list = p_elements[2].text.strip().split(":") if p_elements[2] != None else None
                 date_last_oath_of_office = self.__convert_to_datetime(oath_list[1].strip()) if oath_list != None and len(oath_list) > 1 else None
                 resigned_list = p_elements[3].text.strip().split(":") if len(p_elements) > 3 else None
@@ -97,22 +97,17 @@ class RepresentativesRetriever():
                     position_or_district,
                     party,
                     hometown,
-                    None,
-                    None,
-                    None,
-                    None,
-                    None,
+                    address1,
+                    address2,
+                    address3,
+                    phone,
+                    website,
                     date_last_oath_of_office,
                     date_resigned,
                     is_voting_representative
                 )
                 self.representatives.append(representative)
                 if self.debug == True:
-                    print(address1)
-                    print(address2)
-                    print(address3)
-                    print(phone) 
-                    print(website)
                     place = index + 1
                     if place == 1 or place % self.debug_stagger == 0 or place == len(self.representative_ids):
                         print(f'{place} of {len(self.representative_ids)} Congressional representatives retrieved')
